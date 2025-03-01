@@ -1,9 +1,10 @@
 services:
   - type: web
-    name: vr-ai-app
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    name: mind-to-video
+    env: docker
+    plan: free
+    healthCheckPath: /
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: OPENAI_API_KEY
         sync: false
@@ -11,5 +12,7 @@ services:
         sync: false
       - key: SECRET_KEY
         generateValue: true
-      - key: PYTHON_VERSION
-        value: 3.9.0
+      - key: ENVIRONMENT
+        value: production
+      - key: PORT
+        value: 10000
